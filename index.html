@@ -55,7 +55,7 @@
             }
 
             .tharBanner {
-                background-image: url('./restharbanner.png');
+                background-image: url('./restharbanner2.png');
                 background-position: center center;
                 background-size: cover;
                 /* Adjusted for smaller devices */
@@ -101,7 +101,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"
         integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
     <script>
         let mm = gsap.matchMedia();
 
@@ -123,8 +122,9 @@
                 );
         });
 
-        // Media query for min-width: 769px
-        mm.add("(min-width: 769px)", () => {
+
+        // Media query for min-width: 1200px
+        mm.add("(min-width: 1440px)", () => {
             gsap.timeline({
                 scrollTrigger: {
                     trigger: ".tharBanner",
@@ -136,14 +136,51 @@
                 }
             })
                 .fromTo(".tharBanner",
-                    { backgroundSize: "110%" }, // Background covers the banner
-                    { backgroundSize: "120%" } // Slight zoom on scroll
+                    { backgroundSize: "150%" }, // Background covers the banner
+                    { backgroundSize: "170%" } // Slight zoom on scroll
+                );
+        });
+
+        mm.add("(min-width: 1199px) and (max-width: 1439px)", () => {
+            gsap.timeline({
+                scrollTrigger: {
+                    trigger: ".tharBanner",
+                    start: "top top",
+                    end: "top -50%",
+                    scrub: 3,
+                    pin: true,
+                    pinSpacing: false
+                }
+            })
+                .fromTo(".tharBanner",
+                    { backgroundSize: "200%" }, // Background covers the banner
+                    { backgroundSize: "210%" } // Slight zoom on scroll
+                );
+        });
+
+        // Media query for min-width: 769px (this will overlap with 1200px query)
+        mm.add("(min-width: 769px) and (max-width: 1199px)", () => {
+            gsap.timeline({
+                scrollTrigger: {
+                    trigger: ".tharBanner",
+                    start: "top top",
+                    end: "top -50%",
+                    scrub: 3,
+                    pin: true,
+                    pinSpacing: false,
+                }
+            })
+                .fromTo(".tharBanner",
+                    { backgroundSize: "250%" }, // Background covers the banner
+                    { backgroundSize: "270%" } // Slight zoom on scroll
                 );
         });
     </script>
 
+
     <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis"></script>
     <script>
+
         const lenis = new Lenis({
             duration: 3,
             easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
