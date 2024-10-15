@@ -25,7 +25,8 @@
     .tharRightSide {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-
+        position: relative;
+        z-index: 9;
     }
 
     .tharRightInfo {
@@ -35,6 +36,8 @@
         /* padding: 71px 0 81px; */
         padding: 71px 20px 81px 20px;
         align-items: center;
+        position: relative;
+        z-index: 1;
     }
 
     .tharLeftImage {
@@ -92,8 +95,7 @@
 
         .tharRightSide {
             grid-template-columns: 1fr;
-            position: relative;
-            z-index: 9;
+
         }
 
         .tharLeftImage {
