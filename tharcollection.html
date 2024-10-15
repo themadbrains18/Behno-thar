@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>BehnoTharsection3</title>
 </head>
 
@@ -15,6 +15,7 @@
     }
 
     .tharPrefall {
+        position: -webkit-sticky; /* Safari iOS fix */
         position: sticky;
         top: 0;
         height: 100vh;
@@ -27,13 +28,14 @@
         grid-template-columns: repeat(2, 1fr);
         position: relative;
         z-index: 9;
+        -webkit-transform: translate3d(0, 0, 0); /* Safari fix */
+        transform: translate3d(0, 0, 0); /* Hardware acceleration */
     }
 
     .tharRightInfo {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        /* padding: 71px 0 81px; */
         padding: 71px 20px 81px 20px;
         align-items: center;
         position: relative;
@@ -43,6 +45,8 @@
     .tharLeftImage {
         max-width: 773px;
         width: 100%;
+        position: relative;
+        z-index: 1; /* Ensure stacking order */
     }
 
     .tharRightText1 {
@@ -60,6 +64,8 @@
     .tharRightImage {
         max-width: 255px;
         width: 100%;
+        position: relative;
+        z-index: 1;
     }
 
     .tharLeftSide {
@@ -67,6 +73,8 @@
         justify-content: center;
         align-items: center;
         width: 100%;
+        position: relative;
+        z-index: 1;
     }
 
     .tharProducts {
@@ -95,7 +103,6 @@
 
         .tharRightSide {
             grid-template-columns: 1fr;
-
         }
 
         .tharLeftImage {
