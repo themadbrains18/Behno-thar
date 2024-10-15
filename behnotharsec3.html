@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BehnoTharsection3</title>
+</head>
+
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+
+    .tharPrefall {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .tharRightSide {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .tharRightInfo {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        /* padding: 71px 0 81px; */
+        padding: 71px 20px 81px 20px;
+        align-items: center;
+    }
+
+    .tharLeftImage {
+        max-width: 773px;
+        width: 100%;
+    }
+
+    .tharRightText1 {
+        max-width: 452px;
+        width: 100%;
+        padding-bottom: 47px;
+    }
+
+    .tharRightText3 {
+        max-width: 371px;
+        width: 100%;
+        padding-top: 55px;
+    }
+
+    .tharRightImage {
+        max-width: 255px;
+        width: 100%;
+    }
+
+    .tharLeftSide {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+
+    .tharProducts {
+        display: grid;
+        grid-template-columns: 50% 50%;
+        position: relative;
+        z-index: 9;
+    }
+
+    .tharProducts img {
+        width: 100%;
+    }
+
+    .responsiveImage {
+        display: none;
+    }
+
+    @media screen and (max-width: 768px) {
+        .tharPrefall {
+            grid-template-columns: 1fr;
+        }
+
+        .space {
+            display: none;
+        }
+
+        .tharRightSide {
+            grid-template-columns: 1fr;
+        }
+
+        .tharLeftImage {
+            display: none;
+        }
+
+        .responsiveImage {
+            display: block;
+            padding: 45px 0;
+            background-color: #FFF;
+            position: relative;
+            z-index: 9;
+            text-align: center;
+        }
+
+        .responsiveImage img {
+            text-align: center;
+            max-width: 377px;
+            width: 100%;
+        }
+
+        .tharLeftSide {
+            display: none;
+        }
+
+        .tharRightInfo {
+            padding: 0 53px;
+        }
+    }
+</style>
+
+<body>
+
+    <div class="tharLeftCollection">
+        <div class="tharPrefall">
+            <div class="tharLeftSide">
+                <img class="tharLeftImage" src="./leftsideimage.png" alt="leftsideimage">
+            </div>
+            <div class="tharRightInfo">
+                <img class="tharRightText1" src="/text1.png" alt="text1">
+                <img class="tharRightImage" src="/mainproduct.png" alt="main product">
+                <img class="tharRightText3" src="/text3.png" alt="text3">
+            </div>
+        </div>
+        <div class="tharRightSide">
+            <div class="responsiveImage">
+                <img src="./leftsideimage.png" alt="leftsideimage">
+            </div>
+            <div class="tharProducts">
+                <img src="./perfallproductsimage2.png" alt="product image 2">
+                <img src="./perfallproductsimage7.png" alt="product image 2">
+                <img src="./perfallproductsimage8.png" alt="product image 2">
+                <img src="./perfallproductsimage9.png" alt="product image 2">
+                <img src="./perfallproductsimage10.png" alt="product image 2">
+                <img src="./perfallproductsimage3.png" alt="product image 2">
+                <img src="./perfallproductsimage5.png" alt="product image 2">
+                <img src="./perfallproductsimage6.png" alt="product image 2">
+                <img src="./perfallproductsimage4.png" alt="product image 2">
+                <img src="./perfallproductsimage1.png" alt="product image 1">
+            </div>
+            <div class="space"></div>
+        </div>
+    </div>
+
+    <div style="height: 300vh;"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
+        integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"
+        integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const lenis = new Lenis({
+                duration: 3,
+                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+            });
+
+            function raf(time) {
+                lenis.raf(time);
+                requestAnimationFrame(raf);
+            }
+
+            requestAnimationFrame(raf);
+        });
+    </script>
+
+</body>
+
+</html>
