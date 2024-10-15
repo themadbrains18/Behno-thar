@@ -4,10 +4,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thar-desert</title>
+    <title>Thar Desert</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .tharBanner {
+            background-image: url("tharbanner.jpg");
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            /* Ensures the image covers the entire container */
+            height: 100vh;
+        }
+
+        .bannerContent {
+            display: flex;
+            justify-content: center;
+            align-items: end;
+            width: 100%;
+            padding-top: 65px;
+        }
+
+        .mainBanner {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bannerContent img {
+            max-width: 338px;
+            width: 100%;
+        }
+
+        .logoSection {
+            height: 50vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        @media screen and (max-width: 768px) {
+            .bannerContent {
+                padding-top: 85px;
+            }
+
+            .tharBanner {
+                background-image: url('./restharbanner.png');
+                background-position: center center;
+                background-size: cover;
+                /* Adjusted for smaller devices */
+                height: 100vh;
+            }
+
+            .bannerContent img {
+                max-width: 100%;
+                /* Ensure image is responsive */
+            }
+
+            .logoSection {
+                height: 34vh;
+            }
+        }
+
+        @media screen and (max-width: 1200px) {
+            .bannerContent img {
+                max-width: 282px;
+                height: auto;
+            }
+        }
+    </style>
 </head>
 
 <body>
+    <div class="mainBanner">
+        <div class="tharBanner">
+            <div class="bannerContent">
+                <img src="./tharbannertext.png" alt="Thar Banner Text">
+            </div>
+        </div>
+        <div class="logoSection">
+            <img src="/behnologo.png" alt="Behno Logo">
+        </div>
+    </div>
+
+    <div style="height: 200vh; background-color: red;"></div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
         integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg=="
@@ -17,9 +103,59 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <script>
-        
+        let mm = gsap.matchMedia();
+
+        // Media query for max-width: 768px
+        mm.add("(max-width: 768px)", () => {
+            gsap.timeline({
+                scrollTrigger: {
+                    trigger: ".tharBanner",
+                    start: "top top",
+                    end: "20% -20%",
+                    scrub: 3,
+                    pin: true,
+                    pinSpacing: false,
+                }
+            })
+                .fromTo(".tharBanner",
+                    { backgroundSize: "110%" }, // Scales the background to cover
+                    { backgroundSize: "120%", backgroundPosition: "center center" }
+                );
+        });
+
+        // Media query for min-width: 769px
+        mm.add("(min-width: 769px)", () => {
+            gsap.timeline({
+                scrollTrigger: {
+                    trigger: ".tharBanner",
+                    start: "top top",
+                    end: "top -50%",
+                    scrub: 3,
+                    pin: true,
+                    pinSpacing: false
+                }
+            })
+                .fromTo(".tharBanner",
+                    { backgroundSize: "110%" }, // Background covers the banner
+                    { backgroundSize: "120%" } // Slight zoom on scroll
+                );
+        });
     </script>
 
+    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis"></script>
+    <script>
+        const lenis = new Lenis({
+            duration: 3,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+        })
+
+        function raf(time) {
+            lenis.raf(time)
+            requestAnimationFrame(raf)
+        }
+
+        requestAnimationFrame(raf)
+    </script>
 </body>
 
 </html>
