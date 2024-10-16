@@ -12,7 +12,7 @@
             box-sizing: border-box;
         }
 
-        .tharCollectionrightscrolltext h1 {
+        .tharCollectionrightscrolltext {
             font-family: Neue Haas Grotesk Display Pro;
             font-size: 14px;
             font-weight: 400;
@@ -61,7 +61,7 @@
 
 
 
-        .tharCollectionrightscrolltext {
+        .tharCollectionrightscroll {
             display: flex;
             flex-direction: column;
             justify-content: start;
@@ -71,6 +71,17 @@
             margin: 0 auto;
 
         }
+
+        .tharCollectionrightscrolltextres {
+            display: none;
+        }
+
+        @media screen and (max-width :1024px) {
+            .tharCollectionrightscrolltext {
+                margin: 30px 25px 0 0;
+            }
+        }
+
 
         @media only screen and (max-width: 768px) {
             .tharCollectionrightbg {
@@ -83,8 +94,15 @@
             }
 
             .tharCollectionrightscrolltext {
+                margin: 0px;
+            }
+
+            .tharCollectionrightscroll {
+                text-align: center;
+                align-items: center;
                 display: none;
             }
+
 
             .tharCollectionrightinner {
                 position: -webkit-sticky;
@@ -99,6 +117,28 @@
             .tharCollectionrightinnergrid {
                 width: 100%;
             }
+
+            .tharCollectionrightscrolltextres {
+                display: block;
+                font-family: Neue Haas Grotesk Display Pro;
+                font-size: 14px;
+                font-weight: 400;
+                line-height: 18.2px;
+                color: #ffffff;
+                max-width: 287px;
+                width: 100%;
+                text-align: center;
+                text-transform: uppercase;
+                padding: 20px 0;
+            }
+
+            .tharCollectionrightscrollres {
+                position: sticky;
+                top: 0%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
         }
     </style>
 </head>
@@ -107,15 +147,21 @@
     <div class="tharCollectionright">
         <div class="tharCollectionrightinner">
             <div class="tharCollectionrightbg">
-                <div class="tharCollectionrightscrolltext">
-                    <h1>Ina Bag Medium Pleat Nappa Maize
+                <div class="tharCollectionrightscroll">
+                    <h1 class="tharCollectionrightscrolltext">Ina Bag Medium Pleat Nappa Maize
                         Ina Mini Crossbody Pleat Nappa Maize</h1>
                 </div>
             </div>
         </div>
-        <div class="tharCollectionrightproducts">
-            <div></div>
-            <div class="tharCollectionrightinnergrid">
+        <div>
+            <div class="tharCollectionrightscrollres">
+                <h1 class="tharCollectionrightscrolltextres">Ina Bag Medium Pleat Nappa Maize
+                    Ina Mini Crossbody Pleat Nappa Maize</h1>
+            </div>
+            <div class="tharCollectionrightproducts">
+                <div></div>
+                <div class="tharCollectionrightinnergrid">
+                </div>
             </div>
         </div>
     </div>
@@ -149,7 +195,7 @@
                             position: "sticky",
                             top: 0,
                         }, "b")
-                        .to(section.querySelector(".tharCollectionrightscrolltext"), {
+                        .to(section.querySelector(".tharCollectionrightscroll"), {
                             xPercent: -50,
                         }, "b");
                 },
@@ -194,6 +240,25 @@
     </script>
 
     <!-- gsap script ==================== end  -->
+
+
+    <!-- smouth scroller -->
+    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis"></script>
+    <script>
+
+        const lenis = new Lenis({
+            duration: 3,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+        })
+
+        function raf(time) {
+            lenis.raf(time)
+            requestAnimationFrame(raf)
+        }
+
+        requestAnimationFrame(raf)
+    </script>
+
 </body>
 
 </html>
