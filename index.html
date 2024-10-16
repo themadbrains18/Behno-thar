@@ -40,7 +40,7 @@
         }
 
         .logoSection {
-            height: 50vh;
+            height: 34vh;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -68,7 +68,7 @@
             }
 
             .logoSection {
-                height: 100vh;
+                /* height: 100vh; */
             }
         }
 
@@ -189,6 +189,7 @@
         @media screen and (max-width: 768px) {
             .tharPrefall {
                 grid-template-columns: 1fr;
+                position: static;
             }
 
             .space {
@@ -280,20 +281,31 @@
                 scrollTrigger: {
                     trigger: ".tharBanner",
                     start: "top top",
-                    end: "20% -100%",
+                    end: "top -70%",
                     scrub: 3,
                     pin: true,
                     pinSpacing: false,
+                    markers: true
                 }
             })
                 .fromTo(".tharBanner",
-                    { backgroundSize: "110%" }, // Scales the background to cover
+                    { backgroundSize: "110%" },
                     { backgroundSize: "120%", backgroundPosition: "center center" }
                 );
+
+            gsap.timeline({
+                scrollTrigger: {
+                    trigger: ".logoSection",
+                    start: "top 70%",
+                    end: "top 30%",
+                    scrub: 3,
+                    pin: true,
+                    markers: true // Remove markers for production
+                }
+            });
         });
 
-
-        // Media query for min-width: 1200px
+        // Media query for min-width: 1440px
         mm.add("(min-width: 1440px)", () => {
             gsap.timeline({
                 scrollTrigger: {
@@ -307,58 +319,79 @@
                 }
             })
                 .fromTo(".tharBanner",
-                    { backgroundSize: "120%" }, // Background covers the banner
-                    { backgroundSize: "130%" } // Slight zoom on scroll
+                    { backgroundSize: "120%" },
+                    { backgroundSize: "130%" }
                 );
 
             gsap.timeline({
                 scrollTrigger: {
                     trigger: ".logoSection",
-                    start: "top 60%",
+                    start: "top 70%",
                     end: "top 30%",
                     scrub: 3,
                     pin: true,
                     markers: true
                 }
-            })
-
+            });
         });
 
+        // Media query for 1199px to 1439px
         mm.add("(min-width: 1199px) and (max-width: 1439px)", () => {
             gsap.timeline({
                 scrollTrigger: {
                     trigger: ".tharBanner",
                     start: "top top",
-                    end: "top -50%",
-                    scrub: 3,
-                    pin: true,
-                    pinSpacing: false
-                }
-            })
-                .fromTo(".tharBanner",
-                    { backgroundSize: "200%" }, // Background covers the banner
-                    { backgroundSize: "210%" } // Slight zoom on scroll
-                );
-        });
-
-        // Media query for min-width: 769px (this will overlap with 1200px query)
-        mm.add("(min-width: 769px) and (max-width: 1199px)", () => {
-            gsap.timeline({
-                scrollTrigger: {
-                    trigger: ".tharBanner",
-                    start: "top top",
-                    end: "top -50%",
+                    end: "top -70%",
                     scrub: 3,
                     pin: true,
                     pinSpacing: false,
                 }
             })
                 .fromTo(".tharBanner",
-                    { backgroundSize: "250%" }, // Background covers the banner
-                    { backgroundSize: "260%" } // Slight zoom on scroll
+                    { backgroundSize: "200%" },
+                    { backgroundSize: "210%" }
                 );
+
+            gsap.timeline({
+                scrollTrigger: {
+                    trigger: ".logoSection",
+                    start: "top 70%",
+                    end: "top 30%",
+                    scrub: 3,
+                    pin: true,
+                }
+            });
+        });
+
+        // Media query for 769px to 1199px
+        mm.add("(min-width: 769px) and (max-width: 1199px)", () => {
+            gsap.timeline({
+                scrollTrigger: {
+                    trigger: ".tharBanner",
+                    start: "top top",
+                    end: "top -70%",
+                    scrub: 3,
+                    pin: true,
+                    pinSpacing: false,
+                }
+            })
+                .fromTo(".tharBanner",
+                    { backgroundSize: "250%" },
+                    { backgroundSize: "260%" }
+                );
+
+            gsap.timeline({
+                scrollTrigger: {
+                    trigger: ".logoSection",
+                    start: "top 70%",
+                    end: "top 30%",
+                    scrub: 3,
+                    pin: true,
+                }
+            });
         });
     </script>
+
 
 
     <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis"></script>
