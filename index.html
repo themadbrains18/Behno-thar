@@ -68,7 +68,7 @@
             }
 
             .logoSection {
-                height: 34vh;
+                height: 100vh;
             }
         }
 
@@ -280,7 +280,7 @@
                 scrollTrigger: {
                     trigger: ".tharBanner",
                     start: "top top",
-                    end: "20% -20%",
+                    end: "20% -100%",
                     scrub: 3,
                     pin: true,
                     pinSpacing: false,
@@ -299,16 +299,29 @@
                 scrollTrigger: {
                     trigger: ".tharBanner",
                     start: "top top",
-                    end: "top -50%",
+                    end: "top -80%",
                     scrub: 3,
                     pin: true,
-                    pinSpacing: false
+                    pinSpacing: false,
+                    markers: true
                 }
             })
                 .fromTo(".tharBanner",
                     { backgroundSize: "120%" }, // Background covers the banner
                     { backgroundSize: "130%" } // Slight zoom on scroll
                 );
+
+            gsap.timeline({
+                scrollTrigger: {
+                    trigger: ".logoSection",
+                    start: "top 60%",
+                    end: "top 30%",
+                    scrub: 3,
+                    pin: true,
+                    markers: true
+                }
+            })
+
         });
 
         mm.add("(min-width: 1199px) and (max-width: 1439px)", () => {
