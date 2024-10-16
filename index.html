@@ -40,13 +40,17 @@
         }
 
         .logoSection {
-            height: 34vh;
+            height: 30vh;
             display: flex;
             justify-content: center;
             align-items: center;
             position: relative;
             z-index: 1;
             overflow: hidden;
+        }
+
+        .tharLeftCollection {
+            background-color: red;
         }
 
         @media screen and (max-width: 768px) {
@@ -285,7 +289,6 @@
                     scrub: 3,
                     pin: true,
                     pinSpacing: false,
-                    markers: true
                 }
             })
                 .fromTo(".tharBanner",
@@ -300,7 +303,6 @@
                     end: "top 30%",
                     scrub: 3,
                     pin: true,
-                    markers: true // Remove markers for production
                 }
             });
         });
@@ -315,7 +317,6 @@
                     scrub: 3,
                     pin: true,
                     pinSpacing: false,
-                    markers: true
                 }
             })
                 .fromTo(".tharBanner",
@@ -330,7 +331,6 @@
                     end: "top 30%",
                     scrub: 3,
                     pin: true,
-                    markers: true
                 }
             });
         });
