@@ -194,23 +194,6 @@
                 }, "b");
         });
 
-        // Add different animation for mobile screens
-        mm.add("(max-width: 768px)", () => {
-            gsap.to(".tharCollectionrightinner", {
-                scrollTrigger: {
-                    trigger: ".tharCollectionrightscrollres",
-                    scrub: 2,
-                    start: "top top",
-                    end: "100% center",
-                },
-                xPercent: 0,
-                opacity: 1
-            });
-        });
-
-
-
-
 
         // dynamic image insertion
         const tharCollectionrightinnergrid = document.querySelectorAll(".tharCollectionrightinnergrid");

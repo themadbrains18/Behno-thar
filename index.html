@@ -415,42 +415,50 @@
 
 
 
-
     <script>
         gsap.registerPlugin(ScrollTrigger);
 
-        // Function to create GSAP scroll animation for a given section
-        function tharCollectionright(section) {
-            ScrollTrigger.matchMedia({
-                "(min-width: 769px)": function () {
-                    gsap.timeline({
-                        scrollTrigger: {
-                            trigger: section.querySelector('.tharCollectionrightinner'),
-                            scrub: 2,
-                            start: "top top",
-                            end: "100% center",
-                        },
-                    })
-                        .to(section.querySelector(".tharCollectionrightinner"), {
-                            position: "sticky",
-                            top: 0,
-                        }, "b")
-                        .to(section.querySelector(".tharCollectionrightscrolltext"), {
-                            xPercent: -50,
-                        }, "b");
-                },
-                "all": function () {
-                    ScrollTrigger.refresh();
-                },
-            });
-        }
+        // Create a media query instance
+        const mma = gsap.matchMedia();
 
-        // Apply animation to each section
-        document.querySelectorAll(".tharCollectionright").forEach((section) => {
-            tharCollectionright(section);
+        // Add animation for large screens
+        mma.add("(min-width: 769px)", () => {
+            gsap.timeline({
+                scrollTrigger: {
+                    trigger: ".tharCollectionrightinner",
+                    scrub: 2,
+                    start: "top top",
+                    end: "100% center",
+                },
+            })
+                .to(".tharCollectionrightinner", {
+                    position: "sticky",
+                    top: 0,
+                }, "b")
+                .to(".tharCollectionrightscroll", {
+                    xPercent: -50,
+                }, "b");
         });
 
-        // dynamic image
+        // Add different animation for mobile screens
+        mma.add("(max-width: 768px)", () => {
+            gsap.to(".tharCollectionrightinner", {
+                scrollTrigger: {
+                    trigger: ".tharCollectionrightscrollres",
+                    scrub: 2,
+                    start: "top top",
+                    end: "100% center",
+                },
+                xPercent: 0,
+                opacity: 1
+            });
+        });
+
+
+
+
+
+        // dynamic image insertion
         const tharCollectionrightinnergrid = document.querySelectorAll(".tharCollectionrightinnergrid");
 
         // Array of image sources
@@ -467,14 +475,14 @@
             "./tharcollectionright8.png",
         ];
 
-        tharCollectionrightinnergrid.forEach((tharCollectionrightinnergrid) => {
-            images.map((src) => {
+        tharCollectionrightinnergrid.forEach(grid => {
+            images.forEach(src => {
                 const div = document.createElement("div");
                 const img = document.createElement("img");
                 img.src = src;
                 img.alt = "image";
                 div.appendChild(img);
-                tharCollectionrightinnergrid.appendChild(div);
+                grid.appendChild(div);
             });
         });
     </script>
