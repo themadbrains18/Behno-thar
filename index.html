@@ -49,9 +49,6 @@
             overflow: hidden;
         }
 
-        .tharLeftCollection {
-            background-color: red;
-        }
 
         @media screen and (max-width: 768px) {
             .bannerContent {
@@ -97,6 +94,131 @@
         </div>
     </div>
 
+
+
+
+
+    <!-- thar right sec style -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .tharCollectionrightscrolltext h1 {
+            font-family: Neue Haas Grotesk Display Pro;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 18.2px;
+            text-align: right;
+            color: #ffffff;
+        }
+
+        .tharCollectionrightinnergrid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            background-color: #F0F1F4;
+        }
+
+        .tharCollectionrightinnergrid img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .tharCollectionrightinner {
+            position: relative;
+        }
+
+        .tharCollectionrightbg {
+            height: 100vh;
+            width: 100%;
+            background: url("./tharcollectionrightbg.png");
+            background-position: left;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+
+        .tharCollectionrightproducts {
+            display: grid;
+            grid-template-columns: 50% 50%;
+            width: 100%;
+            position: relative;
+            z-index: 10;
+        }
+
+
+
+        .tharCollectionrightscrolltext {
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+            align-items: end;
+            text-align: center;
+            height: 100vh;
+            margin: 0 auto;
+
+        }
+
+        .tharCollectionrightscrolltext h1 {
+            margin: 30px 96px 0 0;
+            max-width: 262px;
+            width: 100%;
+            text-align: center;
+        }
+
+        @media only screen and (max-width: 768px) {
+            .tharCollectionrightbg {
+                width: 100%;
+                max-width: 100%;
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-position: top;
+            }
+
+            .tharCollectionrightscrolltext {
+                display: none;
+            }
+
+            .tharCollectionrightinner {
+                position: -webkit-sticky;
+                position: sticky;
+                top: 0;
+            }
+
+            .tharCollectionrightproducts {
+                grid-template-columns: 0% 100%;
+            }
+
+            .tharCollectionrightinnergrid {
+                width: 100%;
+            }
+        }
+    </style>
+    <!-- thar right sec style -->
+
+
+
+
+    <!-- thar right section html  -->
+    <div class="tharCollectionright">
+        <div class="tharCollectionrightinner">
+            <div class="tharCollectionrightbg">
+                <div class="tharCollectionrightscrolltext">
+                    <h1>Ina Bag Medium Pleat Nappa Maize
+                        Ina Mini Crossbody Pleat Nappa Maize</h1>
+                </div>
+            </div>
+        </div>
+        <div class="tharCollectionrightproducts">
+            <div></div>
+            <div class="tharCollectionrightinnergrid">
+            </div>
+        </div>
+    </div>
+
+    <!-- thar right section html  -->
 
 
 
@@ -270,12 +392,95 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
         integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"
         integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+
+
+
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Function to create GSAP scroll animation for a given section
+        function tharCollectionright(section) {
+            ScrollTrigger.matchMedia({
+                "(min-width: 769px)": function () {
+                    gsap.timeline({
+                        scrollTrigger: {
+                            trigger: section.querySelector('.tharCollectionrightinner'),
+                            scrub: 2,
+                            start: "top top",
+                            end: "100% center",
+                        },
+                    })
+                        .to(section.querySelector(".tharCollectionrightinner"), {
+                            position: "sticky",
+                            top: 0,
+                        }, "b")
+                        .to(section.querySelector(".tharCollectionrightscrolltext"), {
+                            xPercent: -50,
+                        }, "b");
+                },
+                "all": function () {
+                    ScrollTrigger.refresh();
+                },
+            });
+        }
+
+        // Apply animation to each section
+        document.querySelectorAll(".tharCollectionright").forEach((section) => {
+            tharCollectionright(section);
+        });
+
+        // dynamic image
+        const tharCollectionrightinnergrid = document.querySelectorAll(".tharCollectionrightinnergrid");
+
+        // Array of image sources
+        const images = [
+            "./tharcollectionright4.png",
+            "./tharcollectionright5.png",
+            "./tharcollectionright2.png",
+            "./tharcollectionright3.png",
+            "./tharcollectionright1.png",
+            "./tharcollectionright6.png",
+            "./tharcollectionright10.png",
+            "./tharcollectionright7.png",
+            "./tharcollectionright9.png",
+            "./tharcollectionright8.png",
+        ];
+
+        tharCollectionrightinnergrid.forEach((tharCollectionrightinnergrid) => {
+            images.map((src) => {
+                const div = document.createElement("div");
+                const img = document.createElement("img");
+                img.src = src;
+                img.alt = "image";
+                div.appendChild(img);
+                tharCollectionrightinnergrid.appendChild(div);
+            });
+        });
+    </script>
+
+
+
     <script>
         let mm = gsap.matchMedia();
 

@@ -50,7 +50,6 @@
             background-size: cover;
         }
 
-
         .tharCollectionrightproducts {
             display: grid;
             grid-template-columns: 50% 50%;
@@ -58,8 +57,6 @@
             position: relative;
             z-index: 10;
         }
-
-
 
         .tharCollectionrightscroll {
             display: flex;
@@ -69,7 +66,6 @@
             text-align: center;
             height: 100vh;
             margin: 0 auto;
-
         }
 
         .tharCollectionrightscrolltextres {
@@ -81,7 +77,6 @@
                 margin: 30px 25px 0 0;
             }
         }
-
 
         @media only screen and (max-width: 768px) {
             .tharCollectionrightbg {
@@ -102,7 +97,6 @@
                 align-items: center;
                 display: none;
             }
-
 
             .tharCollectionrightinner {
                 position: -webkit-sticky;
@@ -160,8 +154,7 @@
             </div>
             <div class="tharCollectionrightproducts">
                 <div></div>
-                <div class="tharCollectionrightinnergrid">
-                </div>
+                <div class="tharCollectionrightinnergrid"></div>
             </div>
         </div>
     </div>
@@ -179,38 +172,47 @@
     <script>
         gsap.registerPlugin(ScrollTrigger);
 
-        // Function to create GSAP scroll animation for a given section
-        function tharCollectionright(section) {
-            ScrollTrigger.matchMedia({
-                "(min-width: 769px)": function () {
-                    gsap.timeline({
-                        scrollTrigger: {
-                            trigger: section.querySelector('.tharCollectionrightinner'),
-                            scrub: 2,
-                            start: "top top",
-                            end: "100% center",
-                        },
-                    })
-                        .to(section.querySelector(".tharCollectionrightinner"), {
-                            position: "sticky",
-                            top: 0,
-                        }, "b")
-                        .to(section.querySelector(".tharCollectionrightscroll"), {
-                            xPercent: -50,
-                        }, "b");
-                },
-                "all": function () {
-                    ScrollTrigger.refresh();
-                },
-            });
-        }
+        // Create a media query instance
+        const mm = gsap.matchMedia();
 
-        // Apply animation to each section
-        document.querySelectorAll(".tharCollectionright").forEach((section) => {
-            tharCollectionright(section);
+        // Add animation for large screens
+        mm.add("(min-width: 769px)", () => {
+            gsap.timeline({
+                scrollTrigger: {
+                    trigger: ".tharCollectionrightinner",
+                    scrub: 2,
+                    start: "top top",
+                    end: "100% center",
+                },
+            })
+                .to(".tharCollectionrightinner", {
+                    position: "sticky",
+                    top: 0,
+                }, "b")
+                .to(".tharCollectionrightscroll", {
+                    xPercent: -50,
+                }, "b");
         });
 
-        // dynamic image
+        // Add different animation for mobile screens
+        mm.add("(max-width: 768px)", () => {
+            gsap.to(".tharCollectionrightinner", {
+                scrollTrigger: {
+                    trigger: ".tharCollectionrightscrollres",
+                    scrub: 2,
+                    start: "top top",
+                    end: "100% center",
+                },
+                xPercent: 0,
+                opacity: 1
+            });
+        });
+
+
+
+
+
+        // dynamic image insertion
         const tharCollectionrightinnergrid = document.querySelectorAll(".tharCollectionrightinnergrid");
 
         // Array of image sources
@@ -227,22 +229,21 @@
             "./tharcollectionright8.png",
         ];
 
-        tharCollectionrightinnergrid.forEach((tharCollectionrightinnergrid) => {
-            images.map((src) => {
+        tharCollectionrightinnergrid.forEach(grid => {
+            images.forEach(src => {
                 const div = document.createElement("div");
                 const img = document.createElement("img");
                 img.src = src;
                 img.alt = "image";
                 div.appendChild(img);
-                tharCollectionrightinnergrid.appendChild(div);
+                grid.appendChild(div);
             });
         });
     </script>
 
     <!-- gsap script ==================== end  -->
 
-
-    <!-- smouth scroller -->
+    <!-- smooth scroller -->
     <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis"></script>
     <script>
 
